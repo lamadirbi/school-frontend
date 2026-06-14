@@ -1,121 +1,93 @@
 "use client";
 
-import { useParams } from "next/navigation";
-import { useMemo, useState } from "react";
-import { Alert } from "@/components/atoms/Alert";
-import { Button } from "@/components/atoms/Button";
+import Link from "next/link";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { useMemo } from "react";
 import { Card } from "@/components/atoms/Card";
-import { Input } from "@/components/atoms/Input";
+import {
+  ClassDetailTabs,
+  type ClassTab,
+} from "@/components/teacher/ClassDetailTabs";
+import { GradebookPanel } from "@/components/teacher/GradebookPanel";
+import { HomeworkPanel } from "@/components/teacher/HomeworkPanel";
+import { QuizPanel } from "@/components/teacher/QuizPanel";
 import { PageHeader } from "@/components/molecules/PageHeader";
-import { mockClassStudents, mockTeacherClasses } from "@/data/mock";
-import type { ClassStudent } from "@/types";
-import { Save, Search } from "lucide-react";
+import { useAssignments } from "@/context/AssignmentsContext";
+import { useAuth } from "@/context/AuthContext";
+import { useSchool } from "@/context/SchoolContext";
+import { ArrowRight } from "lucide-react";
 
-export default function ClassGradebookPage() {
+const tabDescriptions: Record<ClassTab, string> = {
+  grades: "دفتر العلامات — إدخال وتعديل درجات الطلاب",
+  homework: "إنشاء وإدارة الواجبات المنزلية للطلاب",
+  quizzes: "إنشاء وإدارة الاختبارات القصيرة والكويزات",
+};
+
+function parseTab(value: string | null): ClassTab {
+  if (value === "homework" || value === "quizzes") return value;
+  return "grades";
+}
+
+export default function ClassDetailPage() {
   const params = useParams();
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const classId = params.id as string;
-  const classInfo = mockTeacherClasses.find((c) => c.id === classId);
-  const initialStudents = mockClassStudents[classId] ?? [];
+  const activeTab = parseTab(searchParams.get("tab"));
 
-  const [students, setStudents] = useState<ClassStudent[]>(initialStudents);
-  const [search, setSearch] = useState("");
-  const [saved, setSaved] = useState(false);
-  const [saving, setSaving] = useState(false);
+  const { user } = useAuth();
+  const { getTeacherClassesByUserId, teachers } = useSchool();
+  const { getHomeworkByClass, getQuizzesByClass } = useAssignments();
 
-  const filtered = useMemo(
-    () => students.filter((s) => s.name.includes(search)),
-    [students, search]
+  const assignedClasses = user ? getTeacherClassesByUserId(user.id) : [];
+  const classInfo = assignedClasses.find((c) => c.id === classId);
+  const teacher = teachers.find((t) => t.userId === user?.id);
+
+  const counts = useMemo(
+    () => ({
+      homework: getHomeworkByClass(classId).length,
+      quizzes: getQuizzesByClass(classId).length,
+    }),
+    [classId, getHomeworkByClass, getQuizzesByClass]
   );
 
-  function updateStudent(id: string, field: "grade" | "note", value: string) {
-    setStudents((prev) =>
-      prev.map((s) =>
-        s.id === id
-          ? { ...s, [field]: field === "grade" ? (value === "" ? "" : Number(value)) : value }
-          : s
-      )
+  function setTab(tab: ClassTab) {
+    const next = tab === "grades" ? "" : `?tab=${tab}`;
+    router.replace(`/teacher/classes/${classId}${next}`, { scroll: false });
+  }
+
+  if (!classInfo || !teacher) {
+    return (
+      <Card className="text-center">
+        <p className="mb-4 text-neutral-600">
+          {!teacher
+            ? "لم يتم ربط حسابك بملف معلم. تواصل مع الإدارة."
+            : "هذا الفصل غير مسند إليك أو غير موجود."}
+        </p>
+        <Link
+          href="/teacher"
+          className="inline-flex items-center gap-1 text-sm font-semibold text-brand-blue hover:underline"
+        >
+          <ArrowRight className="h-4 w-4" />
+          العودة إلى فصولي
+        </Link>
+      </Card>
     );
-    setSaved(false);
-  }
-
-  function handleSave() {
-    setSaving(true);
-    setTimeout(() => {
-      setSaving(false);
-      setSaved(true);
-    }, 800);
-  }
-
-  if (!classInfo) {
-    return <p className="text-p-black/50">الفصل غير موجود</p>;
   }
 
   return (
     <div>
-      <PageHeader
-        title={classInfo.name}
-        description="دفتر العلامات — إدخال وتعديل درجات الطلاب"
-      />
+      <PageHeader title={classInfo.name} description={tabDescriptions[activeTab]} />
 
-      {saved && (
-        <Alert variant="success" className="mb-4">
-          تم حفظ التغييرات بنجاح (عرض تجريبي)
-        </Alert>
+      <ClassDetailTabs active={activeTab} onChange={setTab} counts={counts} />
+
+      {activeTab === "grades" && <GradebookPanel classId={classId} />}
+      {activeTab === "homework" && (
+        <HomeworkPanel classId={classId} teacherId={teacher.id} />
       )}
-
-      <div className="mb-4 flex flex-wrap items-center gap-4">
-        <div className="relative flex-1">
-          <Search className="absolute start-3 top-1/2 h-4 w-4 -translate-y-1/2 text-p-black/40" />
-          <input
-            type="text"
-            placeholder="بحث عن طالب..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="w-full rounded-xl border border-neutral-200 py-2.5 pe-4 ps-10 text-sm focus:border-p-green focus:outline-none focus:ring-2 focus:ring-p-green/20"
-          />
-        </div>
-        <Button onClick={handleSave} disabled={saving}>
-          <Save className="h-4 w-4" />
-          {saving ? "جاري الحفظ..." : "حفظ التغييرات"}
-        </Button>
-      </div>
-
-      <Card className="overflow-x-auto p-0">
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="border-b border-neutral-100 bg-p-cream text-p-black/60">
-              <th className="px-4 py-3 text-start font-semibold">اسم الطالب</th>
-              <th className="px-4 py-3 text-start font-semibold">الدرجة</th>
-              <th className="px-4 py-3 text-start font-semibold">ملاحظة</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filtered.map((s) => (
-              <tr key={s.id} className="border-b border-neutral-50">
-                <td className="px-4 py-3 font-medium text-p-black">{s.name}</td>
-                <td className="px-4 py-3">
-                  <Input
-                    type="number"
-                    min={0}
-                    max={100}
-                    value={s.grade}
-                    onChange={(e) => updateStudent(s.id, "grade", e.target.value)}
-                    className="w-24 py-1.5"
-                  />
-                </td>
-                <td className="px-4 py-3">
-                  <Input
-                    value={s.note}
-                    onChange={(e) => updateStudent(s.id, "note", e.target.value)}
-                    placeholder="ملاحظة..."
-                    className="min-w-[160px] py-1.5"
-                  />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </Card>
+      {activeTab === "quizzes" && (
+        <QuizPanel classId={classId} teacherId={teacher.id} />
+      )}
     </div>
   );
 }

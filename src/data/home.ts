@@ -1,4 +1,4 @@
-import type { LucideIcon } from "lucide-react";
+﻿import type { LucideIcon } from "lucide-react";
 import { GraduationCap, Star, Users } from "lucide-react";
 
 export type NewsCategory = "أخبار" | "فعاليات" | "إنجازات";
@@ -24,7 +24,7 @@ export const newsItems: NewsItem[] = [
       "يبدأ برنامج القراءة الصيفي في أول يوليو لجميع المراحل الدراسية، بهدف تعزيز مهارات القراءة والتعلم الذاتي خلال العطلة.",
     date: "٢٠ يونيو ٢٠٢٦",
     category: "أخبار",
-    gradient: "from-[#064E3B] to-[#0d6b4f]",
+    gradient: "from-[var(--brand-teal)] to-[var(--brand-teal-light)]",
     featured: true,
   },
   {
@@ -33,7 +33,7 @@ export const newsItems: NewsItem[] = [
     description: "حقق فريق الروبوتات إنجازاً وطنياً في المسابقة.",
     date: "١٠ مايو ٢٠٢٦",
     category: "إنجازات",
-    gradient: "from-[#881337] to-[#9f1239]",
+    gradient: "from-[var(--brand-magenta)] to-[var(--brand-magenta-light)]",
   },
   {
     id: "1",

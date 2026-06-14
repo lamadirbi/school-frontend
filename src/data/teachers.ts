@@ -1,4 +1,4 @@
-import type { SchoolClass, TeacherProfile } from "@/types/teacher";
+﻿import type { SchoolClass, TeacherProfile } from "@/types/teacher";
 
 export const schoolClasses: SchoolClass[] = [
   { id: "c1", name: "الصف العاشر - أ", studentCount: 28 },
@@ -15,7 +15,7 @@ export const initialTeachers: TeacherProfile[] = [
     subject: "الرياضيات",
     experience: "٨ سنوات في تدريس الرياضيات للمرحلة الثانوية",
     bio: "متخصص في تبسيط المفاهيم الرياضية وبناء مهارات التفكير التحليلي لدى الطلاب. حاصل على ماجستير في تعليم الرياضيات.",
-    imageGradient: "from-[#064E3B] to-[#0d6b4f]",
+    imageGradient: "from-[var(--brand-teal)] to-[var(--brand-teal-light)]",
   },
   {
     id: "t2",
@@ -23,7 +23,7 @@ export const initialTeachers: TeacherProfile[] = [
     subject: "الرياضيات",
     experience: "١٢ سنة خبرة أكاديمية",
     bio: "يركز على ربط الرياضيات بالحياة اليومية وإعداد الطلاب للامتحانات الوطنية بأسلوب تفاعلي.",
-    imageGradient: "from-[#881337] to-[#9f1239]",
+    imageGradient: "from-[var(--brand-magenta)] to-[var(--brand-magenta-light)]",
   },
   {
     id: "t3",
@@ -39,7 +39,7 @@ export const initialTeachers: TeacherProfile[] = [
     subject: "الفيزياء والروبوتات",
     experience: "١٠ سنوات — مدرب فريق الروبوتات المدرسي",
     bio: "يجمع بين الفيزياء النظرية والتطبيق العملي عبر مختبرات الروبوتات والمشاريع العلمية.",
-    imageGradient: "from-[#064E3B] to-[#0d6b4f]",
+    imageGradient: "from-[var(--brand-teal)] to-[var(--brand-teal-light)]",
   },
   {
     id: "t5",
@@ -47,7 +47,7 @@ export const initialTeachers: TeacherProfile[] = [
     subject: "اللغة الإنجليزية",
     experience: "٦ سنوات في التدريس والترجمة",
     bio: "تعتمد أسلوب التعلم التفاعلي لتعزيز المحادثة والكتابة الأكاديمية باللغة الإنجليزية.",
-    imageGradient: "from-[#881337] to-[#9f1239]",
+    imageGradient: "from-[var(--brand-magenta)] to-[var(--brand-magenta-light)]",
   },
 ];
 

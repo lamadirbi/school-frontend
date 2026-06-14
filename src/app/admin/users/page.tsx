@@ -59,7 +59,7 @@ export default function AdminUsersPage() {
               options={[
                 { value: "admin", label: "مدير" },
                 { value: "teacher", label: "معلم" },
-                { value: "parent", label: "ولي أمر" },
+                { value: "parent", label: "ولي أمر / طالب" },
               ]}
             />
             <Input label="كلمة المرور" name="password" type="password" required />

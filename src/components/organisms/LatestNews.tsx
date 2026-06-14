@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
@@ -26,7 +26,7 @@ export function LatestNews() {
         <div className="mb-6 flex justify-end">
           <a
             href="#"
-            className="text-sm font-semibold text-[#881337] hover:underline"
+            className="text-sm font-semibold text-[var(--brand-magenta)] hover:underline"
           >
             عرض الكل
           </a>
@@ -41,11 +41,11 @@ export function LatestNews() {
             className="order-1 lg:col-span-2 lg:row-start-1"
           >
             <div className="mb-6 flex items-center gap-3">
-              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#064e3b]/10">
-                <Newspaper className="h-5 w-5 text-[#064e3b]" />
+              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[var(--brand-teal)]/10">
+                <Newspaper className="h-5 w-5 text-[var(--brand-teal)]" />
               </span>
               <div>
-                <h2 className="text-2xl font-bold text-[#064e3b]">آخر الأخبار</h2>
+                <h2 className="text-2xl font-bold text-[var(--brand-teal)]">آخر الأخبار</h2>
                 <p className="mt-1 text-sm text-[#1a1a1a]/50">
                   أحدث الفعاليات والإنجازات في مدرستنا
                 </p>

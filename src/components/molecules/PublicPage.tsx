@@ -10,9 +10,9 @@ export function PublicPage({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-white">
+    <div className="bg-white pt-[var(--nav-height)]">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-        <PageHeader title={title} description={description} />
+        {title ? <PageHeader title={title} description={description} /> : null}
         {children}
       </div>
     </div>

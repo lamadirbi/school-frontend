@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { Calendar } from "lucide-react";
 import { Badge } from "@/components/atoms/Badge";
@@ -16,7 +16,7 @@ export function AdminFeaturedNewsCard({ item, onDelete }: AdminFeaturedNewsCardP
   return (
     <article className="overflow-hidden rounded-2xl border border-neutral-100 bg-white shadow-sm">
       <div className={cn("relative h-56 bg-gradient-to-br sm:h-64 lg:h-72", item.gradient)}>
-        <span className="absolute bottom-4 end-4 rounded-full bg-[#881337] px-3 py-1 text-xs font-semibold text-white">
+        <span className="absolute bottom-4 end-4 rounded-full bg-[var(--brand-magenta)] px-3 py-1 text-xs font-semibold text-white">
           أخبار المدرسة
         </span>
         <span className="absolute top-4 start-4">

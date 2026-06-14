@@ -1,17 +1,17 @@
 "use client";
 
-import { GraduationCap } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { Alert } from "@/components/atoms/Alert";
 import { Button } from "@/components/atoms/Button";
 import { Input } from "@/components/atoms/Input";
+import { Logo } from "@/components/atoms/Logo";
 import { useAuth } from "@/context/AuthContext";
 
 const demoAccounts = [
   { email: "admin@ghazatna.edu.ps", role: "مدير" },
   { email: "teacher@ghazatna.edu.ps", role: "معلم" },
-  { email: "parent@ghazatna.edu.ps", role: "ولي أمر" },
+  { email: "parent@ghazatna.edu.ps", role: "ولي أمر / طالب" },
 ];
 
 export default function LoginPage() {
@@ -32,9 +32,7 @@ export default function LoginPage() {
     <div className="flex min-h-screen flex-col items-center justify-center bg-white px-4">
       <div className="w-full max-w-md">
         <div className="mb-8 text-center">
-          <Link href="/" className="inline-flex items-center gap-2">
-            <GraduationCap className="h-10 w-10 text-p-green" />
-          </Link>
+          <Logo variant="icon" className="mx-auto h-12 w-12" />
           <h1 className="mt-4 text-2xl font-bold text-p-green">تسجيل الدخول</h1>
           <div className="mx-auto mt-2 h-1 w-12 rounded-full bg-p-red" />
           <p className="mt-3 text-sm text-p-black/50">
@@ -87,7 +85,7 @@ export default function LoginPage() {
                   setEmail(acc.email);
                   setPassword("demo");
                 }}
-                className="flex w-full items-center justify-between rounded-lg bg-gray-50 px-3 py-2 text-start text-xs hover:bg-[#064e3b]/5"
+                className="flex w-full items-center justify-between rounded-lg bg-gray-50 px-3 py-2 text-start text-xs hover:bg-brand-teal/5"
               >
                 <span className="font-medium text-p-black/80">{acc.role}</span>
                 <span className="text-p-black/50" dir="ltr">

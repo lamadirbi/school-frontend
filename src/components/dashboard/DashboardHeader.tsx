@@ -1,6 +1,7 @@
 "use client";
 
-import { GraduationCap, LogOut } from "lucide-react";
+import { LogOut } from "lucide-react";
+import { Logo } from "@/components/atoms/Logo";
 import { useAuth } from "@/context/AuthContext";
 import { roleLabels } from "@/data/navigation";
 
@@ -9,10 +10,7 @@ export function DashboardHeader() {
 
   return (
     <header className="sticky top-0 z-40 flex h-16 items-center justify-between border-b border-neutral-200 bg-white px-4 sm:px-6">
-      <div className="flex items-center gap-2">
-        <GraduationCap className="h-7 w-7 text-p-green" />
-        <span className="hidden font-bold text-p-green sm:inline">مدرسة غَزتنا</span>
-      </div>
+      <Logo variant="icon" />
 
       <div className="flex items-center gap-4">
         {user && (

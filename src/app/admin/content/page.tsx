@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useMemo, useState } from "react";
 import { Button } from "@/components/atoms/Button";
@@ -19,9 +19,9 @@ import {
 import { Plus } from "lucide-react";
 
 const categoryGradients: Record<NewsCategory, string> = {
-  أخبار: "from-[#064E3B] to-[#0d6b4f]",
+  أخبار: "from-[var(--brand-teal)] to-[var(--brand-teal-light)]",
   فعاليات: "from-[#1a1a1a] to-[#404040]",
-  إنجازات: "from-[#881337] to-[#9f1239]",
+  إنجازات: "from-[var(--brand-magenta)] to-[var(--brand-magenta-light)]",
 };
 
 export default function AdminContentPage() {

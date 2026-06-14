@@ -1,4 +1,4 @@
-import type {
+﻿import type {
   AdminStudent,
   ClassStudent,
   FinanceNotice,
@@ -82,8 +82,8 @@ export const mockFinanceNotices: FinanceNotice[] = [
 ];
 
 export const mockNews: NewsItem[] = [
-  { id: "n1", title: "افتتاح معرض العلوم السنوي", body: "استضافت المدرسة معرض العلوم بمشاركة جميع المراحل.", date: "2026-05-15", gradient: "from-[#064E3B] to-[#0d6b4f]" },
-  { id: "n2", title: "فريق الروبوتات يفوز بالمركز الأول", body: "حقق فريق الروبوتات إنجازاً وطنياً في المسابقة.", date: "2026-05-10", gradient: "from-[#881337] to-[#9f1239]" },
+  { id: "n1", title: "افتتاح معرض العلوم السنوي", body: "استضافت المدرسة معرض العلوم بمشاركة جميع المراحل.", date: "2026-05-15", gradient: "from-[var(--brand-teal)] to-[var(--brand-teal-light)]" },
+  { id: "n2", title: "فريق الروبوتات يفوز بالمركز الأول", body: "حقق فريق الروبوتات إنجازاً وطنياً في المسابقة.", date: "2026-05-10", gradient: "from-[var(--brand-magenta)] to-[var(--brand-magenta-light)]" },
   { id: "n3", title: "برنامج القراءة الصيفي", body: "يبدأ البرنامج في أول يوليو لجميع المراحل.", date: "2026-06-01", gradient: "from-[#1a1a1a] to-[#404040]" },
 ];
 

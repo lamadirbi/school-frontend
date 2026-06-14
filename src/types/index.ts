@@ -49,6 +49,66 @@ export type ClassStudent = {
   note: string;
 };
 
+export type AssignmentStatus = "active" | "closed";
+
+export type Homework = {
+  id: string;
+  classId: string;
+  teacherId: string;
+  title: string;
+  description: string;
+  dueDate: string;
+  status: AssignmentStatus;
+  createdAt: string;
+};
+
+export type QuizQuestion = {
+  id: string;
+  prompt: string;
+  options: string[];
+  correctIndex: number;
+};
+
+export type Quiz = {
+  id: string;
+  classId: string;
+  teacherId: string;
+  title: string;
+  description: string;
+  dueDate: string;
+  startAt: string;
+  durationMinutes: number;
+  status: AssignmentStatus;
+  questions: QuizQuestion[];
+  createdAt: string;
+};
+
+export type HomeworkSubmission = {
+  id: string;
+  homeworkId: string;
+  studentId: string;
+  content: string;
+  submittedAt: string;
+};
+
+export type QuizSubmission = {
+  id: string;
+  quizId: string;
+  studentId: string;
+  answers: number[];
+  score: number;
+  maxScore: number;
+  submittedAt: string;
+  timeSpentSeconds: number;
+};
+
+export type ParentChild = {
+  parentUserId: string;
+  studentId: string;
+  classId: string;
+  name: string;
+};
+
 export type AdminStudent = {
   id: string;
   name: string;

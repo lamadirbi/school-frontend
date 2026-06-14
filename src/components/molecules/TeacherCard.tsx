@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { Card } from "@/components/atoms/Card";
 import { cn } from "@/lib/utils";
 import type { TeacherProfile } from "@/types/teacher";
@@ -18,10 +18,10 @@ export function TeacherCard({ teacher }: { teacher: TeacherProfile }) {
           {initial}
         </div>
         <div className="p-5">
-          <h3 className="text-lg font-bold text-[#1a1a1a] transition-colors group-hover:text-[#064e3b]">
+          <h3 className="text-lg font-bold text-[#1a1a1a] transition-colors group-hover:text-[var(--brand-teal)]">
             {teacher.name}
           </h3>
-          <p className="mt-2 text-sm font-medium text-[#064e3b]">{teacher.subject}</p>
+          <p className="mt-2 text-sm font-medium text-[var(--brand-teal)]">{teacher.subject}</p>
           <p className="mt-2 text-xs text-[#1a1a1a]/50">{teacher.experience}</p>
         </div>
       </Card>

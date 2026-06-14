@@ -1,16 +1,47 @@
 "use client";
 
+import Link from "next/link";
 import { Card } from "@/components/atoms/Card";
 import { PageHeader } from "@/components/molecules/PageHeader";
+import { useAssignments } from "@/context/AssignmentsContext";
+import { useAuth } from "@/context/AuthContext";
 import { mockStudent, parentAlerts } from "@/data/mock";
-import { Bell, CreditCard, GraduationCap, Hash, Users } from "lucide-react";
+import { getChildByParentUserId } from "@/data/students";
+import {
+  Bell,
+  BookOpen,
+  ClipboardList,
+  CreditCard,
+  GraduationCap,
+  Hash,
+  Users,
+} from "lucide-react";
 
 export default function ParentDashboard() {
+  const { user } = useAuth();
   const student = mockStudent;
+  const child = user ? getChildByParentUserId(user.id) : undefined;
+  const { getHomeworkByClass, getQuizzesByClass, getHomeworkSubmission, getQuizSubmission } =
+    useAssignments();
+
+  const pendingHomework = child
+    ? getHomeworkByClass(child.classId)
+        .filter((h) => h.status === "active")
+        .filter((h) => !getHomeworkSubmission(h.id, child.studentId)).length
+    : 0;
+
+  const openQuizzes = child
+    ? getQuizzesByClass(child.classId)
+        .filter((q) => q.status === "active")
+        .filter((q) => !getQuizSubmission(q.id, child.studentId)).length
+    : 0;
 
   return (
     <div>
-      <PageHeader title="الرئيسية" description="ملخص حالة الطالب والتنبيهات السريعة" />
+      <PageHeader
+        title="الرئيسية"
+        description="متابعة ابنك/ابنتك — واجبات، اختبارات، ونتائج"
+      />
 
       <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {[
@@ -29,6 +60,27 @@ export default function ParentDashboard() {
             </div>
           </Card>
         ))}
+      </div>
+
+      <div className="mb-8 grid gap-4 sm:grid-cols-2">
+        <Link href="/parent/homework">
+          <Card className="transition-shadow hover:shadow-md">
+            <BookOpen className="mb-2 h-7 w-7 text-brand-orange" />
+            <h3 className="font-bold text-neutral-950">الواجبات</h3>
+            <p className="mt-1 text-sm text-neutral-600">
+              {pendingHomework > 0 ? `${pendingHomework} واجب بانتظار التسليم` : "لا واجبات معلّقة"}
+            </p>
+          </Card>
+        </Link>
+        <Link href="/parent/quizzes">
+          <Card className="transition-shadow hover:shadow-md">
+            <ClipboardList className="mb-2 h-7 w-7 text-brand-blue" />
+            <h3 className="font-bold text-neutral-950">الاختبارات</h3>
+            <p className="mt-1 text-sm text-neutral-600">
+              {openQuizzes > 0 ? `${openQuizzes} اختبار متاح` : "لا اختبارات متاحة حالياً"}
+            </p>
+          </Card>
+        </Link>
       </div>
 
       <h2 className="mb-4 flex items-center gap-2 text-lg font-bold text-p-black">

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useParams } from "next/navigation";
 import { TeacherCV } from "@/components/organisms/TeacherCV";
@@ -16,7 +16,7 @@ export default function TeacherCVPage() {
     return (
       <div className="mx-auto max-w-3xl px-4 py-16 text-center">
         <p className="text-[#1a1a1a]/50">المعلم غير موجود.</p>
-        <Link href="/faculty" className="mt-4 inline-block text-[#064e3b] hover:underline">
+        <Link href="/faculty" className="mt-4 inline-block text-[var(--brand-teal)] hover:underline">
           العودة للكادر التعليمي
         </Link>
       </div>

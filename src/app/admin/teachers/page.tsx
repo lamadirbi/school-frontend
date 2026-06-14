@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import { Badge } from "@/components/atoms/Badge";
@@ -12,8 +12,8 @@ import { cn } from "@/lib/utils";
 import { Plus, Save, Trash2 } from "lucide-react";
 
 const gradients = [
-  "from-[#064E3B] to-[#0d6b4f]",
-  "from-[#881337] to-[#9f1239]",
+  "from-[var(--brand-teal)] to-[var(--brand-teal-light)]",
+  "from-[var(--brand-magenta)] to-[var(--brand-magenta-light)]",
   "from-[#1a1a1a] to-[#404040]",
 ];
 
@@ -116,13 +116,13 @@ export default function AdminTeachersPage() {
                   className={cn(
                     "w-full rounded-xl px-4 py-3 text-start transition-colors",
                     selectedTeacher === t.id
-                      ? "bg-[#064e3b]/10 text-[#064e3b]"
+                      ? "bg-[var(--brand-teal)]/10 text-[var(--brand-teal)]"
                       : "hover:bg-neutral-50"
                   )}
                 >
                   <p className="font-semibold">{t.name}</p>
                   <p className="text-xs text-[#1a1a1a]/50">{t.subject}</p>
-                  <p className="mt-1 text-xs text-[#064e3b]">
+                  <p className="mt-1 text-xs text-[var(--brand-teal)]">
                     {(assignments[t.id] ?? []).length} فصل مسند
                   </p>
                 </button>
@@ -188,8 +188,8 @@ export default function AdminTeachersPage() {
                       className={cn(
                         "flex cursor-pointer items-center justify-between rounded-xl border px-4 py-3 transition-colors",
                         checked
-                          ? "border-[#064e3b] bg-[#064e3b]/5"
-                          : "border-neutral-200 hover:border-[#064e3b]/30"
+                          ? "border-[var(--brand-teal)] bg-[var(--brand-teal)]/5"
+                          : "border-neutral-200 hover:border-[var(--brand-teal)]/30"
                       )}
                     >
                       <div>
@@ -202,7 +202,7 @@ export default function AdminTeachersPage() {
                         type="checkbox"
                         checked={checked}
                         onChange={() => toggleClass(cls.id)}
-                        className="h-5 w-5 rounded accent-[#064e3b]"
+                        className="h-5 w-5 rounded accent-[var(--brand-teal)]"
                       />
                     </label>
                   );
@@ -215,7 +215,7 @@ export default function AdminTeachersPage() {
                   حفظ الإسناد
                 </Button>
                 {saved && (
-                  <span className="text-sm text-[#064e3b]">تم الحفظ بنجاح</span>
+                  <span className="text-sm text-[var(--brand-teal)]">تم الحفظ بنجاح</span>
                 )}
               </div>
             </>

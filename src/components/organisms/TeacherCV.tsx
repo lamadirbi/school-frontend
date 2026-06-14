@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { Card } from "@/components/atoms/Card";
@@ -25,7 +25,7 @@ export function TeacherCV({
     <div className="mx-auto max-w-3xl">
       <Link
         href={backHref}
-        className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-[#064e3b] hover:underline"
+        className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-[var(--brand-teal)] hover:underline"
       >
         <ArrowRight className="h-4 w-4" />
         {backLabel}
@@ -45,12 +45,12 @@ export function TeacherCV({
           <h1 className="text-2xl font-bold text-[#1a1a1a] sm:text-3xl">
             {teacher.name}
           </h1>
-          <div className="mt-2 h-1 w-16 rounded-full bg-[#881337]" />
+          <div className="mt-2 h-1 w-16 rounded-full bg-[var(--brand-magenta)]" />
 
           <div className="mt-6 space-y-4">
             <div className="flex items-start gap-3">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#064e3b]/10">
-                <GraduationCap className="h-5 w-5 text-[#064e3b]" />
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--brand-teal)]/10">
+                <GraduationCap className="h-5 w-5 text-[var(--brand-teal)]" />
               </span>
               <div>
                 <p className="text-sm font-semibold text-[#1a1a1a]/50">التخصص</p>
@@ -59,8 +59,8 @@ export function TeacherCV({
             </div>
 
             <div className="flex items-start gap-3">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#064e3b]/10">
-                <Briefcase className="h-5 w-5 text-[#064e3b]" />
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--brand-teal)]/10">
+                <Briefcase className="h-5 w-5 text-[var(--brand-teal)]" />
               </span>
               <div>
                 <p className="text-sm font-semibold text-[#1a1a1a]/50">الخبرة</p>
@@ -72,7 +72,7 @@ export function TeacherCV({
           <p className="mt-6 leading-relaxed text-[#1a1a1a]/70">{teacher.bio}</p>
 
           <div className="mt-8 border-t border-neutral-100 pt-6">
-            <h2 className="mb-4 flex items-center gap-2 text-lg font-bold text-[#064e3b]">
+            <h2 className="mb-4 flex items-center gap-2 text-lg font-bold text-[var(--brand-teal)]">
               <BookOpen className="h-5 w-5" />
               الفصول التي يدرّسها
             </h2>
@@ -86,7 +86,7 @@ export function TeacherCV({
                 {classes.map((cls) => (
                   <li
                     key={cls.id}
-                    className="rounded-xl border border-neutral-100 bg-[#064e3b]/5 px-4 py-3"
+                    className="rounded-xl border border-neutral-100 bg-[var(--brand-teal)]/5 px-4 py-3"
                   >
                     <p className="font-semibold text-[#1a1a1a]">{cls.name}</p>
                     <p className="mt-1 text-xs text-[#1a1a1a]/50">

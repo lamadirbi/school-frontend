@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { cn } from "@/lib/utils";
 import type { NewsItem } from "@/data/home";
@@ -17,7 +17,7 @@ export function NewsListItem({ item }: { item: NewsItem }) {
         <h3 className="font-bold leading-snug text-[#1a1a1a]">{item.title}</h3>
         <a
           href="#"
-          className="self-end text-sm font-semibold text-[#064e3b] hover:underline"
+          className="self-end text-sm font-semibold text-[var(--brand-teal)] hover:underline"
         >
           اقرأ المزيد
         </a>

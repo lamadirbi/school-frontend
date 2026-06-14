@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { newsFilters, type NewsFilter } from "@/data/home";
 import { cn } from "@/lib/utils";
@@ -20,8 +20,8 @@ export function NewsFilterBar({
           className={cn(
             "rounded-full px-4 py-1.5 text-sm font-medium transition-colors",
             filter === f
-              ? "bg-[#064e3b] text-white"
-              : "border border-neutral-200 bg-white text-[#1a1a1a]/70 hover:border-[#064e3b]/30"
+              ? "bg-[var(--brand-teal)] text-white"
+              : "border border-neutral-200 bg-white text-[#1a1a1a]/70 hover:border-[var(--brand-teal)]/30"
           )}
         >
           {f}

@@ -1,45 +1,93 @@
-import { Card } from "@/components/atoms/Card";
+"use client";
+
+import { motion } from "framer-motion";
+import { Heart, Sparkles, Target } from "lucide-react";
+import { PremiumPageHero, PremiumPanel } from "@/components/molecules/PremiumPageHero";
 import { PublicPage } from "@/components/molecules/PublicPage";
 import { schoolValues } from "@/data/public";
-import { Heart, Target } from "lucide-react";
 
 export default function AboutPage() {
   return (
-    <PublicPage
-      title="من نحن"
-      description="مدرسة غَزتنا مؤسسة تعليمية رقمية تهدف إلى تمكين الطلاب من خلال بيئة تعلم آمنة ومبتكرة."
-    >
-      <div className="mb-8 grid gap-6 md:grid-cols-2">
-        <Card>
-          <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-p-green/10">
-            <Target className="h-5 w-5 text-p-green" />
-          </div>
-          <h3 className="text-lg font-bold text-p-black">رؤيتنا</h3>
-          <p className="mt-2 leading-relaxed text-p-black/60">
-            أن نكون المدرسة الرقمية الرائدة في فلسطين، نُخرّج جيلاً قادراً على المنافسة
-            عالمياً مع الحفاظ على الهوية والقيم.
-          </p>
-        </Card>
-        <Card>
-          <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-p-green/10">
-            <Heart className="h-5 w-5 text-p-green" />
-          </div>
-          <h3 className="text-lg font-bold text-p-black">رسالتنا</h3>
-          <p className="mt-2 leading-relaxed text-p-black/60">
-            توفير تعليم عالي الجودة يجمع بين المناهج الأكاديمية والمهارات الرقمية، مع
-            دعم شامل لأولياء الأمور والمجتمع.
-          </p>
-        </Card>
+    <PublicPage title="" description="">
+      <PremiumPageHero
+        badge="هويتنا التعليمية"
+        title="من نحن"
+        description="مدرسة غَزتنا مؤسسة تعليمية رقمية تهدف إلى تمكين الطلاب من خلال بيئة تعلم آمنة، مبتكرة، ومتصلة بالمستقبل."
+      />
+
+      <div className="mb-16 grid gap-8 lg:grid-cols-2">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <PremiumPanel
+            label="Vision"
+            title="رؤيتنا"
+            gradient="from-brand-blue/10 via-white to-white"
+            icon={<Target className="h-7 w-7 text-brand-blue" />}
+          >
+            <p>
+              أن نكون المدرسة الرقمية الرائدة في فلسطين، نُخرّج جيلاً قادراً على
+              المنافسة عالمياً مع الحفاظ على الهوية والقيم الوطنية.
+            </p>
+          </PremiumPanel>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          <PremiumPanel
+            label="Mission"
+            title="رسالتنا"
+            gradient="from-brand-orange/10 via-white to-brand-yellow/10"
+            icon={<Heart className="h-7 w-7 text-brand-orange" />}
+          >
+            <p>
+              توفير تعليم عالي الجودة يجمع بين المناهج الأكاديمية والمهارات
+              الرقمية، مع دعم شامل لأولياء الأمور والمجتمع.
+            </p>
+          </PremiumPanel>
+        </motion.div>
       </div>
 
-      <h2 className="mb-4 text-xl font-bold text-p-black">قيمنا</h2>
-      <div className="grid gap-4 sm:grid-cols-3">
-        {schoolValues.map((v) => (
-          <Card key={v.title}>
-            <h3 className="font-bold text-p-green">{v.title}</h3>
-            <p className="mt-2 text-sm text-p-black/60">{v.desc}</p>
-          </Card>
-        ))}
+      <div className="relative overflow-hidden rounded-3xl bg-neutral-950 px-6 py-12 sm:px-10 sm:py-14">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-30 pattern-tatreez"
+          aria-hidden
+        />
+        <div className="relative">
+          <div className="mb-10 flex items-end justify-between gap-4">
+            <div>
+              <span className="text-xs font-bold tracking-[0.25em] text-brand-yellow">
+                CORE VALUES
+              </span>
+              <h2 className="mt-2 text-2xl font-bold text-white sm:text-3xl">قيمنا</h2>
+            </div>
+            <Sparkles className="hidden h-8 w-8 text-brand-yellow sm:block" />
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            {schoolValues.map((v, i) => (
+              <motion.div
+                key={v.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
+                className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm"
+              >
+                <span className="text-3xl font-extrabold text-brand-yellow/80">{v.num}</span>
+                <h3 className="mt-4 text-lg font-bold text-white">{v.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-white/70">{v.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </PublicPage>
   );

@@ -9,15 +9,15 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "bg-[#064e3b] !text-white shadow-sm hover:bg-[#0d6b4f] focus-visible:ring-[#064e3b] disabled:bg-[#064e3b]/50",
+    "bg-brand-blue !text-white shadow-sm hover:bg-brand-blue/90 focus-visible:ring-brand-blue disabled:bg-brand-blue/50",
   accent:
-    "bg-[#881337] !text-white shadow-sm hover:bg-[#9f1239] focus-visible:ring-[#881337] disabled:bg-[#881337]/50",
+    "bg-brand-orange !text-white shadow-sm hover:bg-brand-orange/90 focus-visible:ring-brand-orange disabled:bg-brand-orange/50",
   outline:
-    "border-2 border-[#064e3b] bg-white !text-[#064e3b] hover:bg-[#064e3b] hover:!text-white focus-visible:ring-[#064e3b]",
+    "border-2 border-brand-blue bg-white !text-brand-blue hover:bg-brand-blue hover:!text-white focus-visible:ring-brand-blue",
   ghost:
-    "bg-transparent !text-[#064e3b] hover:bg-[#064e3b]/10 focus-visible:ring-[#064e3b]",
+    "bg-transparent !text-brand-blue hover:bg-brand-blue/10 focus-visible:ring-brand-blue",
   danger:
-    "bg-transparent !text-[#881337] hover:bg-[#881337]/10 focus-visible:ring-[#881337]",
+    "bg-transparent !text-brand-orange hover:bg-brand-orange/10 focus-visible:ring-brand-orange",
 };
 
 const base =

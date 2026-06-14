@@ -6,67 +6,57 @@ import { Button } from "@/components/atoms/Button";
 
 export function Hero() {
   return (
-    <section
-      id="الرئيسية"
-      className="relative min-h-[100dvh] overflow-hidden bg-white"
-    >
-      {/* شاشات طولية (هاتف، تابلت عمودي) */}
+    <section id="الرئيسية" className="relative min-h-dvh overflow-hidden">
       <Image
-        src="/images/hero-bg-portrait.png"
+        src="/images/hero-illustration.jpg"
         alt=""
         fill
         priority
-        className="object-cover object-center portrait:block landscape:hidden"
+        className="object-cover object-top sm:object-center"
         sizes="100vw"
         aria-hidden
       />
 
-      {/* شاشات عرضية (كمبيوتر، هاتف أفقي) */}
-      <Image
-        src="/images/hero-bg.png"
-        alt=""
-        fill
-        priority
-        className="hidden object-cover object-center portrait:hidden landscape:block"
-        sizes="100vw"
-        aria-hidden
-      />
+      <div className="relative z-10 flex min-h-dvh w-full flex-col items-start px-6 sm:px-10 lg:px-16">
+        <div aria-hidden className="hero-content-offset w-full shrink-0" />
 
-      <div className="relative z-10 mx-auto flex min-h-[100dvh] max-w-4xl flex-col items-center justify-center px-4 py-12 text-center sm:px-6 sm:py-16 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
+          className="max-w-2xl text-start"
         >
-          <p className="text-lg font-medium text-[#1a1a1a] sm:text-xl">
+          <p className="text-xl font-medium text-brand-black sm:text-2xl">
             مرحبا بكم في
           </p>
 
-          <h1 className="mt-2 text-4xl font-extrabold leading-tight text-[#064e3b] sm:text-6xl lg:text-7xl">
-            مدرسة غَزتنا
+          <h1 className="mt-3 text-5xl font-extrabold leading-tight sm:text-6xl lg:text-7xl">
+            <span className="text-brand-black">مدرسة </span>
+            <span className="text-brand-orange">غَزتنا</span>
           </h1>
-          <div className="mx-auto mt-3 h-1.5 w-48 rounded-full bg-[#064e3b] sm:w-64" />
+          <div className="mt-4 h-1.5 w-56 rounded-full bg-brand-blue sm:w-72" />
 
-          <p className="mt-8 text-xl font-bold text-[#1a1a1a] sm:text-2xl">
+          <p className="mt-8 text-2xl font-bold text-brand-black sm:text-3xl lg:text-4xl">
             التعليم الرقمي بمعايير عالمية
           </p>
 
-          <p className="mx-auto mt-6 max-w-lg text-base leading-relaxed text-[#1a1a1a]/70 sm:text-lg">
-            منصة تعليمية حديثة تجمع بين التميز الأكاديمي والتقنية، لبناء جيل
-            واعٍ ومبدع في غزة
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-brand-black/80 sm:text-xl">
+            من أصالة الانتماء إلى ريادة المستقبل — منصة تعليمية حديثة تجمع بين
+            التميز الأكاديمي والتقنية، لبناء جيل واعٍ ومبدع في غزة
           </p>
 
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row-reverse">
+          <div className="mt-10 flex flex-wrap items-center gap-4">
             <Button
               href="/register"
-              className="min-w-[180px] rounded-full px-10 py-3.5 text-base"
+              variant="accent"
+              className="min-w-[180px] rounded-full px-10 py-3.5 text-base shadow-md"
             >
               ابدأ رحلتك
             </Button>
             <Button
               href="/about"
               variant="outline"
-              className="min-w-[180px] rounded-full px-10 py-3.5 text-base"
+              className="min-w-[180px] rounded-full border-brand-blue bg-white/90 px-10 py-3.5 text-base backdrop-blur-sm"
             >
               تعرّف علينا
             </Button>

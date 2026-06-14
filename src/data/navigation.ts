@@ -2,11 +2,13 @@ import type { UserRole } from "@/types";
 import {
   BarChart3,
   BookOpen,
+  ClipboardList,
   CreditCard,
   FileText,
   GraduationCap,
   Home,
   Newspaper,
+  PenLine,
   Settings,
   Users,
 } from "lucide-react";
@@ -30,11 +32,15 @@ export const publicNavLinks = [
 export const dashboardNav: Record<UserRole, NavItem[]> = {
   parent: [
     { href: "/parent", label: "الرئيسية", icon: Home },
+    { href: "/parent/homework", label: "الواجبات", icon: PenLine },
+    { href: "/parent/quizzes", label: "الاختبارات", icon: ClipboardList },
     { href: "/parent/grades", label: "النتائج", icon: BookOpen },
     { href: "/parent/fees", label: "المالية", icon: CreditCard },
   ],
   teacher: [
     { href: "/teacher", label: "فصولي", icon: GraduationCap },
+    { href: "/teacher/homework", label: "إضافة واجب", icon: PenLine },
+    { href: "/teacher/quizzes", label: "إضافة اختبار", icon: ClipboardList },
     { href: "/teacher/profile", label: "سيرتي الذاتية", icon: FileText },
   ],
   admin: [
@@ -50,5 +56,5 @@ export const dashboardNav: Record<UserRole, NavItem[]> = {
 export const roleLabels: Record<UserRole, string> = {
   admin: "مدير النظام",
   teacher: "معلم",
-  parent: "ولي أمر",
+  parent: "ولي أمر / طالب",
 };
